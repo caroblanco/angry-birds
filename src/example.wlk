@@ -74,7 +74,7 @@ class Matilda inherits Pajaro{
 	
 	method agregarHuevo(){
 		const huevo = new Huevo(peso = 2)
-		huevos.add()
+		huevos.add(huevo)
 	}
 }
 
@@ -119,10 +119,6 @@ class IslaPajaro{
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-class Evento{
-	
-}
-
 object manejoDeIra{
 	method realizar(isla){
 		isla.tranquilizarPajaros()
@@ -140,14 +136,15 @@ class FiestaSorpresa{
 	const homenajeados = []
 	
 	method realizar(isla){
-		if(self.hayHomenajeados()){
-			isla.hacerEnojarA(homenajeados)
-		}else{
+		self.hayHomenajeados()
+		isla.hacerEnojarA(homenajeados)
+	}
+	
+	method hayHomenajeados(){
+		if(homenajeados.isEmpty()){
 			self.error("NO HAY PAJAROS HOMENAJEADOS")
 		}
 	}
-	
-	method hayHomenajeados() = not homenajeados.isEmpty()
 }
 
 class SerieDeEventosDesafortunados{
@@ -177,7 +174,7 @@ class Pared{
 	const anchoPared
 	const material
 	
-	method resistencia() = material.resistencia()* anchoPared
+	method resistencia() = material.resistencia() * anchoPared
 }
 
 object vidrio{
